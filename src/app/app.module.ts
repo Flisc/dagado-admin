@@ -11,13 +11,15 @@ import { ServicesListComponent } from './components/services-list/services-list.
 /** FIREBASE */
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddProductComponent,
     HeaderComponent,
-    ServicesListComponent
+    ServicesListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
