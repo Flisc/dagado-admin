@@ -1,7 +1,7 @@
 <form #invoiceForm="ngForm">
   <div class="container-fluid pt-2 mb-5">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card border-secondary">
           <div class="card-body">
             <h4 class="card-title">Customer Details</h4>
@@ -74,6 +74,9 @@
                   <td>
                     {{product.price * product.quantity || ''}}
                   </td>
+                  <td>
+                    <button class="delete" (click)="deleteProduct(product)">Delete</button>
+                  </td>
                 </tr>
                 </tbody>
               </table>
@@ -91,7 +94,7 @@
         </div>
 
       </div>
-      <div class="col-md-4">
+      <div class="col-md-8">
         <button type="button" class="btn btn-secondary btn-lg btn-block"
                 (click)="invoiceForm.valid ? generatePDF('download') : ''">Download Invoice
         </button>
