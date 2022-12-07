@@ -28,6 +28,12 @@ export class HomeComponent implements OnInit {
   addProduct() {
     this.invoice.products.push(new Product('', 0, 0));
   }
+  deleteProduct(product: Product) {
+    let index = this.invoice.products.indexOf(product)
+    console.log("index", index)
+    this.invoice.products =  this.invoice.products.slice(index, 1);
+    console.log(this.invoice.products)
+  }
 
   generatePDF(action = 'open') {
     console.log("called")
@@ -35,21 +41,16 @@ export class HomeComponent implements OnInit {
     let docDefinition = {
       content: [
         {
+          image: 'assets/images/dagado_logo.png'
+        },
+        {
           text: 'dagado-services',
           fontSize: 16,
           alignment: 'center',
-          color: '#047886'
+          color: '#047886',
         },
         {
-          text: 'INVOICE',
-          fontSize: 20,
-          bold: true,
-          alignment: 'center',
-          decoration: 'underline',
-          color: 'skyblue'
-        },
-        {
-          text: 'Customer Details',
+          text: 'Informatii Client',
           style: 'sectionHeader'
         },
         {
@@ -76,7 +77,7 @@ export class HomeComponent implements OnInit {
           ]
         },
         {
-          text: 'Order Details',
+          text: 'Servicii',
           style: 'sectionHeader'
         },
         {
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit {
               ...this.invoice.products.map(p => ([p?.name, p?.price, p.quantity, (p?.price * p.quantity).toFixed(2)])),
               [{text: 'Total Amount', colSpan: 3}, {}, {},
                 this.invoice.products.reduce((sum, p) =>
-                  sum + (p.quantity || 1 * p.price || 1), 0).toFixed(2)]
+                  sum + (p.quantity * p.price), 0).toFixed(2)]
             ]
           }
         },
@@ -102,21 +103,10 @@ export class HomeComponent implements OnInit {
         },
         {
           columns: [
-            [{qr: `${this.invoice.customerName}`, fit: '50'}],
-            [{text: 'Signature', alignment: 'right', italics: true}],
+            [{text: 'Semnatura', alignment: 'right', italics: true}]
           ]
         },
-        {
-          text: 'Terms and Conditions',
-          style: 'sectionHeader'
-        },
-        {
-          ul: [
-            'Order can be return in max 10 days.',
-            'Warrenty of the product will be subject to the manufacturer terms and conditions.',
-            'This is system generated invoice.',
-          ],
-        }
+
       ],
       styles: {
         sectionHeader: {
