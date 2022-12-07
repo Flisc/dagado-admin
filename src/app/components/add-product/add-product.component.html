@@ -1,15 +1,17 @@
 <html>
-<header>
-  <h1>Dagado Admin</h1>
-</header>
+<div class="header">
+
+</div>
 <div class="ui-fluid">
   <form [formGroup]="productsForm" class="add-form">
     <h3>Serviciu</h3>
-    <input  type="text"  formControlName="name"/>
+    <div class="input-group mb-3">
+      <input type="text" formControlName="name" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+    </div>
     <h3>Pret</h3>
     <input type="number"  formControlName="price"/>
   </form>
-  <button  type="button" class="button" label="Adauga serviciu" (click)="onSubmit()">Add</button>
+  <button  type="button" class="btn btn-primary" label="Adauga serviciu" (click)="onSubmit()">Adauga</button>
   <ol>
     <li *ngFor="let product of products"> {{product.name}} {{product.price}}</li>
   </ol>
