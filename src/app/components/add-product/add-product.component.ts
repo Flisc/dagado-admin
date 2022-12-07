@@ -12,7 +12,7 @@ type Product = {
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  products = new Array<Product>;
+  products = new Array<Product>();
   total: number;
   productsForm: FormGroup;
 
