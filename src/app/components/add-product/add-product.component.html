@@ -1,0 +1,21 @@
+<html>
+<header>
+  <h1>Dagado Admin</h1>
+</header>
+<div class="ui-fluid">
+  <form [formGroup]="productsForm" class="add-form">
+    <h3>Serviciu</h3>
+    <input  type="text"  formControlName="name"/>
+    <h3>Pret</h3>
+    <input type="number"  formControlName="price"/>
+  </form>
+  <button  type="button" class="button" label="Adauga serviciu" (click)="onSubmit()">Add</button>
+  <ol>
+    <li *ngFor="let product of products"> {{product.name}} {{product.price}}</li>
+  </ol>
+  <div class="total">
+    Total: {{total}}
+  </div>
+</div>
+</html>
+
