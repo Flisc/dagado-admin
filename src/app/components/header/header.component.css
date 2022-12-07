@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  background-color: #AEC6DC;
+  border-radius: 10px;
+}
+.container-fluid, app-header {
+  width: 90%;
+}
+
