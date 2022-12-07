@@ -1,23 +1,20 @@
-<html>
-<div class="header">
-
-</div>
-<div class="ui-fluid">
+<div class="ui-fluid text-center">
   <form [formGroup]="productsForm" class="add-form">
     <h3>Serviciu</h3>
     <div class="input-group mb-3">
-      <input type="text" formControlName="name" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+      <input type="text" formControlName="name" class="form-control"   aria-describedby="basic-addon1">
     </div>
     <h3>Pret</h3>
-    <input type="number"  formControlName="price"/>
+    <div class="input-group mb-3 price">
+    <input type="number"  formControlName="price" class="form-control "   aria-describedby="basic-addon1"/>
+    </div>
   </form>
-  <button  type="button" class="btn btn-primary" label="Adauga serviciu" (click)="onSubmit()">Adauga</button>
+  <button  type="button" class="btn btn-primary " label="Adauga serviciu" (click)="onSubmit()">Adauga</button>
   <ol>
     <li *ngFor="let product of products"> {{product.name}} {{product.price}}</li>
   </ol>
-  <div class="total">
+  <div class="total ">
     Total: {{total}}
   </div>
 </div>
-</html>
 

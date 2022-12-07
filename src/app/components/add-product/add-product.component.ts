@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FirebaseService} from "../service/firebase.service";
+import {ServiceModel} from "../models/ServiceModel";
 
 type Product = {
   name: string;
@@ -12,12 +14,13 @@ type Product = {
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  products = new Array<Product>();
+  products = new Array<ServiceModel>();
   total: number;
   productsForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dbService: FirebaseService
   ) {
     this.productsForm = formBuilder.group({
       name: formBuilder.control('', [Validators.required]),
@@ -35,11 +38,13 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-    const newProduct: Product = { ... this.productsForm.value }
+    const { name, price } =  this.productsForm.value;
+    const newProduct = new ServiceModel(name, price);
     this.products.push(newProduct)
     if(newProduct.price != undefined) {
     this.total += newProduct.price;
     }
-    console.log(this.productsForm.value)
+    this.dbService.create(newProduct);
+    console.log({newProduct});
   }
 }

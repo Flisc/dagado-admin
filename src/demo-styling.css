@@ -12,7 +12,7 @@
 }
 
 html {
-    background: var(--color-bg);
+    /*background: var(--color-bg);*/
     font-family: var(--main-family);
     min-height: 100%;
 }
