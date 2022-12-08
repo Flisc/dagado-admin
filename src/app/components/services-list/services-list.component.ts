@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FirebaseService} from "../service/firebase.service";
 import {ServiceModel} from "../models/ServiceModel";
-import {collectionChanges} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-services-list',
@@ -10,6 +9,7 @@ import {collectionChanges} from "@angular/fire/firestore";
 })
 export class ServicesListComponent implements OnInit {
   services = new  Array<ServiceModel>();
+  selectedServices = new Array<ServiceModel>();
 
   constructor(private dbService: FirebaseService) { }
 
@@ -19,5 +19,11 @@ export class ServicesListComponent implements OnInit {
        this.services = value;
      })
   }
+
+  selectService(service: ServiceModel) {
+    this.selectedServices.push(service);
+    console.log("selectedServices", this.selectedServices);
+  }
+
 
 }

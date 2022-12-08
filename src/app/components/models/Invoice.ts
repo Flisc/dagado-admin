@@ -1,10 +1,8 @@
-import { Product } from "./Product";
-import { ServiceModel } from "./ServiceModel";
+import {Product} from "./Product";
 
 export class Invoice {
   constructor(public customerName: string,
-              public address: string,
-              public contactNo: number,
+              public phone: string,
               public email: string,
               public products: Product[] = []) {
     // Initially one empty product row we will show

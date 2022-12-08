@@ -1,3 +1,3 @@
 export class ServiceModel {
-  constructor(public name:String, public price: number) {  }
+  constructor(public name:string, public price: number) {  }
 }

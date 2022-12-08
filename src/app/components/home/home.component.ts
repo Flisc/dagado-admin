@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Invoice} from "../models/Invoice";
 import {Product} from "../models/Product";
-// import {pdfMake} from "pdfmake/build/pdfmake";
-// import * as pdf from "pdfmake/build/pdfmake";
-// @ts-ignore
-// test
+import {ServiceModel} from "../models/ServiceModel";
+import {FirebaseService} from "../service/firebase.service";
+
 const pdf = require('pdfmake/build/pdfmake.js');
-const pdfF  = require("pdfmake/build/vfs_fonts");
+const pdfF = require("pdfmake/build/vfs_fonts");
 pdf.vfs = pdfF.pdfMake.vfs;
 
 @Component({
@@ -15,12 +14,18 @@ pdf.vfs = pdfF.pdfMake.vfs;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  invoice = new Invoice('', '', 0, '', []);
+  invoice = new Invoice('', '', '', []);
+  services = new Array<ServiceModel>();
+  selectedValue: any;
 
-  constructor() {
+  constructor(private dbService: FirebaseService) {
   }
 
   ngOnInit(): void {
+    this.dbService.getAll().valueChanges().subscribe(value => {
+      this.services = value;
+    })
+    console.log(this.services);
   }
 
   @ViewChild('invoiceForm') invoiceForm: any;
@@ -28,10 +33,15 @@ export class HomeComponent implements OnInit {
   addProduct() {
     this.invoice.products.push(new Product('', 0, 0));
   }
+
+  selectService(service: ServiceModel, productIndex: number) {
+    this.invoice.products[productIndex].name = service.name;
+    this.invoice.products[productIndex].price = service.price;
+  }
+
   deleteProduct(product: Product) {
     let index = this.invoice.products.indexOf(product)
-    console.log("index", index)
-    this.invoice.products =  this.invoice.products.slice(index, 1);
+    this.invoice.products.splice(index, 1);
     console.log(this.invoice.products)
   }
 
@@ -40,9 +50,6 @@ export class HomeComponent implements OnInit {
     console.log(this.invoiceForm)
     let docDefinition = {
       content: [
-        {
-          image: 'assets/images/dagado_logo.png'
-        },
         {
           text: 'dagado-services',
           fontSize: 16,
@@ -60,19 +67,15 @@ export class HomeComponent implements OnInit {
                 text: this.invoice.customerName,
                 bold: true
               },
-              {text: this.invoice.address},
+              {text: this.invoice.phone},
               {text: this.invoice.email},
-              {text: this.invoice.contactNo}
             ],
             [
               {
-                text: `Date: ${new Date().toLocaleString()}`,
+                text: `Data: ${new Date().toLocaleString()}`,
                 alignment: 'right'
               },
-              {
-                text: `Bill No : ${((Math.random() * 1000).toFixed(0))}`,
-                alignment: 'right'
-              }
+
             ]
           ]
         },
