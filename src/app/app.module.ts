@@ -15,6 +15,7 @@ import {HomeComponent} from './components/home/home.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {MatSelectModule} from '@angular/material/select';
     AngularFireDatabaseModule,
     NgbModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

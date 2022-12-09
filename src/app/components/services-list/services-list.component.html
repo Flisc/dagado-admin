@@ -1,14 +1,33 @@
-<li *ngFor="let srv of services">Nume: {{srv.name}}, Pret: {{srv.price}}</li>
+<!--<li *ngFor="let srv of services">Nume: {{srv.name}}, Pret: {{srv.price}}</li>-->
 <!--<div class="row">-->
 <!--  <div class="col">-->
-    <div ngbDropdown class="d-inline-block">
-      <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-        drop
-      </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem *ngFor="let service of services"
-                (click)="selectService(service)">{{service.name}}</button>
-      </div>
-    </div>
+<h2 class="text-center">Serviciile din baza de date</h2>
+<div class="services-table">
+  <table class="table">
+    <thead>
+    <tr>
+      <th width="15%">Nr.</th>
+      <th width="45%">Nume</th>
+      <th width="25%">Pret</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let service of services">
+      <td>{{services.indexOf(service)}}</td>
+      <td>{{service.name}}</td>
+      <td>{{service.price}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--    <div ngbDropdown class="d-inline-block">-->
+<!--      <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>-->
+<!--        drop-->
+<!--      </button>-->
+<!--      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">-->
+<!--        <button ngbDropdownItem *ngFor="let service of services"-->
+<!--                (click)="selectService(service)">{{service.name}}</button>-->
+<!--      </div>-->
+<!--    </div>-->
 <!--    </div>-->
 <!--  </div>-->

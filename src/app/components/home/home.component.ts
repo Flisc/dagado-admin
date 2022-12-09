@@ -14,7 +14,7 @@ pdf.vfs = pdfF.pdfMake.vfs;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  invoice = new Invoice('', '', '', []);
+  invoice = new Invoice('', '', '','', []);
   services = new Array<ServiceModel>();
   selectedValue: any;
 
@@ -88,16 +88,16 @@ export class HomeComponent implements OnInit {
             headerRows: 1,
             widths: ['*', 'auto', 'auto', 'auto'],
             body: [
-              ['Product', 'Price', 'Quantity', 'Amount'],
+              ['Produs', 'Pret', 'Cantitate/Buc', 'Total'],
               ...this.invoice.products.map(p => ([p?.name, p?.price, p.quantity, (p?.price * p.quantity).toFixed(2)])),
-              [{text: 'Total Amount', colSpan: 3}, {}, {},
+              [{text: 'Total final', colSpan: 3}, {}, {},
                 this.invoice.products.reduce((sum, p) =>
                   sum + (p.quantity * p.price), 0).toFixed(2)]
             ]
           }
         },
         {
-          text: 'Additional Details',
+          text: 'Detalii suplimentare',
           style: 'sectionHeader'
         },
         {

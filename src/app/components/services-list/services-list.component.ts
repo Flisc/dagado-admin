@@ -10,6 +10,7 @@ import {ServiceModel} from "../models/ServiceModel";
 export class ServicesListComponent implements OnInit {
   services = new  Array<ServiceModel>();
   selectedServices = new Array<ServiceModel>();
+  displayedColumns: string[] = ['position', 'name', 'price'];
 
   constructor(private dbService: FirebaseService) { }
 

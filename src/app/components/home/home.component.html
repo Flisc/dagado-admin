@@ -1,5 +1,5 @@
 <form #invoiceForm="ngForm">
-  <div class="container-fluid pt-2 mb-5">
+  <div class="container-fluid pt-1 mb-5">
     <div class="row">
       <div class="col-md-12">
         <div class="card border-secondary">
@@ -29,7 +29,7 @@
         </div>
         <div class="card border-secondary mt-2">
           <div class="card-body">
-            <h4 class="card-title d-flex justify-content-between">Servicii
+            <h4 class="card-title d-flex justify-content-between">Detalii factura
               <button type="button"
                       class="btn btn-secondary" (click)="addProduct()">+
               </button>
@@ -37,18 +37,22 @@
             <div class="row">
               <table class="table">
                 <thead>
-                <tr>
-                  <th width="25%">Product</th>
-                  <th width="25%">Price</th>
-                  <th width="25%">Quantity</th>
-                  <th width="25%">Amount</th>
+                <tr class="phone-hide">
+                  <th width="25%">Servicii</th>
+                  <th width="25%" >Pret</th>
+                  <th width="25%" >Cantitate</th>
+                  <th width="25%" >Sub-Total</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let product of invoice.products; let i=index">
-                  <td scope="row">
-                    <div ngbDropdown class="d-inline-block">
-                      <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                <tr *ngFor="let product of invoice.products; let i=index" class="outline-tr">
+                  <td scope="row ">
+                    <div ngbDropdown class="d-inline-block service-dropdown">
+                      <button type="button"
+                              class="btn btn-outline-primary"
+                              id="dropdownBasic1"
+                              ngbDropdownToggle
+                      style="margin:0">
                         {{product.name || 'Serviciu'}}
                       </button>
                       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -61,21 +65,24 @@
 <!--                           id="productName" [(ngModel)]="product.name" #ProductName="ngModel"-->
 <!--                           required>-->
                   </td>
+                  <label for="price" class="phone-show">Pret</label>
                   <td>
                     <input type="number" class="form-control" name="price{{i}}" id="price"
                            [ngClass]="{'is-invalid': invoiceForm.submitted && ProductPrice.invalid}"
                            [(ngModel)]="product.price" #ProductPrice="ngModel" required>
                   </td>
+                  <label for="quantity" class="phone-show">Cantitate</label>
                   <td>
                     <input type="number" class="form-control" name="quantity{{i}}" id="quantity"
                            [ngClass]="{'is-invalid': invoiceForm.submitted && ProductQty.invalid}"
                            [(ngModel)]="product.quantity" #ProductQty="ngModel" required>
                   </td>
+                  <label for="quantity" class="phone-show">Sub-total</label>
                   <td>
                     {{product.price * product.quantity || ''}}
                   </td>
                   <td>
-                    <button class="delete" (click)="deleteProduct(product)">Delete</button>
+                    <button class="delete" (click)="deleteProduct(product)">delete</button>
                   </td>
                 </tr>
                 </tbody>
@@ -88,7 +95,7 @@
             <h4 class="card-title">Detalii suplimentare</h4>
             <div class="form-group">
                             <textarea class="form-control" name="additionalDetails" rows="3"
-                                      [(ngModel)]="invoice.customerName"></textarea>
+                                      [(ngModel)]="invoice.details"></textarea>
             </div>
           </div>
         </div>

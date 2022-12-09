@@ -1,4 +1,33 @@
 .delete {
   width: 100%;
   height: 100%;
+  border-color: red;
+  border-radius: 10px;
+  background-color: red;
+}
+
+@media screen and (max-width: 650px) {
+  .container-fluid {
+    width: 100%;
+  }
+
+  td {
+    display: flex;
+  }
+
+  .service-dropdown {
+    text-align: center;
+    margin-left: 35%;
+  }
+  #dropdownBasic1 {
+    width: 150%;
+  }
+  .outline-tr {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+  }
+  .delete {
+    width: auto;
+    margin-left: 40%;
+  }
 }

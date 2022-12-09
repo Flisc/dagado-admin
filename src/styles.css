@@ -3,16 +3,60 @@
   width: 90%;
   margin: 1em auto;
 }
+
 .btn {
   margin: .5em;
 }
-.ui-fluid > *{
+
+.ui-fluid > * {
   border-radius: 10px;
 }
+
 .body {
   background-color: lightgrey;
   border-radius: 10px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.logo-img {
+  width: 130px;
+  height: 130px;
+  background-image: url("assets/images/dagado_logo.png");
+  background-size: cover;
+  margin: .5em auto;
+}
+
+.phone-show {
+  display: none;
+}
+
+/*.phone-hide {*/
+/*  display: block;*/
+/*}*/
+
+
+@media screen and (max-width: 650px) {
+  .container-fluid, html, body, #content {
+    width: 100%;
+  }
+
+  #content > * {
+    width: 100%;
+  }
+
+  .phone-hide {
+    display: none;
+  }
+
+  .phone-show {
+    display: block;
+  }
+}

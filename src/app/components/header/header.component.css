@@ -1,12 +1,21 @@
 .nav {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  background-color: #AEC6DC;
+  justify-content: center;
+  align-content: center;
+  background-color: lightgrey;
   border-radius: 10px;
 }
 .container-fluid, app-header {
   width: 90%;
 }
-
+@media screen and (max-width: 650px) {
+  .nav {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .container-fluid {
+    width: 100%;
+  }
+}
