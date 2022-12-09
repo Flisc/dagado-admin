@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit {
     console.log(this.invoice.products)
   }
 
+  getTotalFinal() {
+    return this.invoice.products.reduce((sum, p) =>
+      sum + (p.quantity * p.price), 0).toFixed(2);
+  }
+
   generatePDF(action = 'open') {
     console.log("called")
     console.log(this.invoiceForm)

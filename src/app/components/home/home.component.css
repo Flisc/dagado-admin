@@ -5,6 +5,11 @@
   border-radius: 10px;
   background-color: red;
 }
+tr  .total  {
+  text-align: center;
+  width: 250px;
+}
+
 
 @media screen and (max-width: 650px) {
   .container-fluid {
